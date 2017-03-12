@@ -1,0 +1,38 @@
+input{
+	border: 0.1px solid gray;
+	border-radius: 5px;
+	height: 30px;
+}
+
+div.col-lg-12{
+	background-color: #ff7043; 
+	height: 84px; 
+	color: white;
+	font-size: 15px;
+}
+
+img {
+	height: 80px;
+	padding: 7px;
+	padding-left: 15px;
+}
+
+p{
+	margin-top: 20px;
+}
+
+div.col-lg-8{
+	border: 1px solid black;
+	margin-top: 30px;
+	width: 70%;
+	margin-left: 15%;
+	padding: 10px;
+}
+
+div.col-lg-9{
+	margin-top: 30px;
+}
+
+button.btn{
+	width: 25%;
+}
