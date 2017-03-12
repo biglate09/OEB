@@ -71,10 +71,29 @@ public class RestaurantOwner extends ActorManagement{
         RestaurantOwner ro = null;
         try{
             Connection con = ConnectionBuilder.getConnection();
-            String sql = "SELECT * FROM RestaurantOwner WHERE LOWER(restUserName) = ? AND restPassword = ?";
+            String sql = "SELECT * FROM RestaurantOwner WHERE LOWER(restUserName) = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, username.toLowerCase());
-            ps.setString(2, password);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                if(ActorManagement.decryptPassword(rs.getString("restPassword")).equals(password)){
+                    ro = new RestaurantOwner();
+                    orm(rs,ro);
+                }
+            }
+        }catch(SQLException ex){
+            System.out.println(ex);
+        }        
+        return ro;
+    }
+
+    public static RestaurantOwner signInForCookie(String cookieVal){
+        RestaurantOwner ro = null;
+        try{
+            Connection con = ConnectionBuilder.getConnection();
+            String sql = "SELECT * FROM RestaurantOwner WHERE LOWER(restUserName) = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, cookieVal.toLowerCase());
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
                 ro = new RestaurantOwner();
@@ -82,7 +101,7 @@ public class RestaurantOwner extends ActorManagement{
             }
         }catch(SQLException ex){
             System.out.println(ex);
-        }        
+        }
         return ro;
     }
 }

@@ -11,6 +11,8 @@
     <title>Title</title>
 </head>
 <body>
-    dasfasfasfas
+    <form method="POST" action="/LogOutServlet">
+        <button>Log Out</button> ${sessionScope.restaurantOwner.restUserName}
+    </form>
 </body>
 </html>
