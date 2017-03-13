@@ -10,7 +10,7 @@ import java.io.IOException;
  */
 @WebServlet("/LogOutServlet")
 public class LogOutServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String target = "/WEB-INF/index.jsp";
         HttpSession hs = request.getSession(false);
         if(hs != null){

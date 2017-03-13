@@ -22,12 +22,12 @@ public class ToIndexServlet extends HttpServlet {
             String cookieVal = ActorManagement.chkCookie(c);
             if(cookieVal != null){
                 RestaurantOwner ro = RestaurantOwner.signInForCookie(ActorManagement.decryptPassword(cookieVal));
-                target = "/WEB-INF/home.jsp";
+                target = "/WEB-INF/emshome.jsp";
                 hs = request.getSession();
                 hs.setAttribute("restaurantOwner",ro);
             }
         }else{
-            target = "/WEB-INF/home.jsp";
+            target = "/WEB-INF/emshome.jsp";
         }
         getServletContext().getRequestDispatcher(target).forward(request,response);
     }

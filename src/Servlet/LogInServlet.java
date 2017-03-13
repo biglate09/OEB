@@ -24,14 +24,14 @@ public class LogInServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String rememberme = request.getParameter("remember-me");
-        String target = "/index.jsp";
+        String target = "/WEB-INF/index.jsp";
         RestaurantOwner ro = null;
         Cookie[] c = request.getCookies();
         if(c != null){
             String cookieVal = ActorManagement.chkCookie(c);
             if(cookieVal != null){
                 ro = RestaurantOwner.signInForCookie(ActorManagement.decryptPassword(cookieVal));
-                target = "/WEB-INF/home.jsp";
+                target = "/WEB-INF/emshome.jsp";
             }
         }
 
@@ -45,7 +45,7 @@ public class LogInServlet extends HttpServlet {
                     cookie.setMaxAge(Integer.MAX_VALUE);
                     response.addCookie(cookie);
                 }
-                target = "/WEB-INF/home.jsp";
+                target = "/WEB-INF/emshome.jsp";
             }else{
                 request.setAttribute("msg","ชื่อผู้ใช้หรือรหัสผ่านของคุณ ไม่ถูกต้อง");
                 request.setAttribute("username",username);
